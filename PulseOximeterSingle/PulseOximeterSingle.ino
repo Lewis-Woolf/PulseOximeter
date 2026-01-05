@@ -1,4 +1,4 @@
-int inPin = 10; // Pin for the heart rate reading
+int inPin = 10; // Pin for the voltage reading
 int BPM = 0; // Heartbeats per min
 
 long currentTimerCount = 0; // Current time
@@ -11,13 +11,14 @@ void setup() {
 }
 
 
-void loop() {
+void loop() 
+{
   float Voltage = analogRead(inPin); //Read the voltage
   if (Voltage >= thresholdVoltage) { // When threshold voltage is reached, calculate BPM
     currentTimerCount = millis(); // Set current timer count
     float timeDifference = (currentTimerCount - previousTimerCount) / 60000; // Time difference between previous and current count in minutes
 
-    BPM = 1 / timeDifference;
+    BPM = round(1 / timeDifference);
 
     previousTimerCount = millis(); // Set the previous timer count to the current time AFTER the BPM is calculated
   }
