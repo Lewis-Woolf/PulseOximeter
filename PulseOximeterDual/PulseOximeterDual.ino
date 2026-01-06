@@ -12,7 +12,7 @@ long lastReportTime = 0; // Time since last report
 void setup() 
 {
   Serial.begin(9600);
-  delay(2000); // Delay for 500 ms so the serial monitor works properly
+  delay(2000); // Delay for 2000 ms so the serial monitor works properly
 
   Serial.println("Initialising Dual-Wavelength Pulse Oximeter... ");
 
@@ -46,7 +46,8 @@ void loop() {
     Serial.print("BPM: "); // Print heart rate
     Serial.println(pox.getHeartRate());
     Serial.print("SpO2: "); // Print oxidation levels
-    Serial.println(pox.getSpO2());
+    Serial.print(pox.getSpO2());
+    Serial.println("%");
     Serial.println("--------------"); // Spacing
 
     lastReportTime = millis(); // Update report time so loop only runs once every reporting period
