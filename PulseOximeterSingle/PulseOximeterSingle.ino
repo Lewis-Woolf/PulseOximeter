@@ -12,13 +12,6 @@ void setup() {
   delay(500); // Delay for 500 ms so the serial monitor works properly
 
   Serial.println("Initialised Single-Wavelength Pulse Oximeter");
-  Serial.println("  __    __")
-  Serial.println("/    \/    \")
-  Serial.println("\          /")
-  Serial.println(" \        /")
-  Serial.println("  \      /")
-  Serial.println("   \    /")
-  Serial.println("    \__/")
 }
       
 

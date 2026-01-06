@@ -1,7 +1,7 @@
 // Make sure to install the MAX30100lib by OXullo Intersecans
 #include "MAX30100_PulseOximeter.h"
 
-PulseOximeter pox // High level interface to the sensor
+PulseOximeter pox; // High level interface to the sensor
 
 int BPM = 0; // Heartbeats per min
 
@@ -21,18 +21,11 @@ void setup()
     Serial.println("FAILURE");
   }
   else {
-    Serialprintln("SUCCESS");
-    Serial.println("  __    __")
-    Serial.println("/    \/    \")
-    Serial.println("\          /")
-    Serial.println(" \        /")
-    Serial.println("  \      /")
-    Serial.println("   \    /")
-    Serial.println("    \__/")
+    Serial.println("SUCCESS");
   }
 
   // Register the callback for the beat detection function
-  pox.setOnBeatDetectedCallBack(onBeatDetected);
+  pox.setOnBeatDetectedCallback(onBeatDetected);
 }
 
 
