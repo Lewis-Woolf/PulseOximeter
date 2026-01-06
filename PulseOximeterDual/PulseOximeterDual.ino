@@ -5,8 +5,8 @@ PulseOximeter pox // High level interface to the sensor
 
 int BPM = 0; // Heartbeats per min
 
-long currentTimerCount = 0; // Current time
-long previousTimerCount = 0; // Time at last beat
+long reportingPeriod = 5000; // Time between information being printed
+long lastReportTime = 0; // Time since last report
 
 
 void setup() 
@@ -14,7 +14,7 @@ void setup()
   Serial.begin(9600);
   delay(500); // Delay for 500 ms so the serial monitor works properly
 
-  Serial.print("Initialising Pulse Oximeter...");
+  Serial.print("Initialising Dual-Wavelength Pulse Oximeter...");
 
   // Check that the pulse oximeter is working
   if (!pox.begin()) {
@@ -29,19 +29,23 @@ void setup()
 }
 
 
-// When beat detected, calculate BPM
+// Print text when beat detected
 void onBeatDetected()
 {
-    currentTimerCount = millis(); // Set current timer count
-    float timeDifference = (currentTimerCount - previousTimerCount) / 60000; // Time difference between previous and current count in minutes
-
-    BPM = round(1 / timeDifference);
-
-    previousTimerCount = millis(); // Set the previous timer count to the current time AFTER the BPM is calculated
-
-    Serial.println("BPM: " + BPM);
+  Serial.println("Beat detected");
 }
 
 
 void loop() {
+  pox.update(); // Update POX
+
+  // Print heart rate and oxidation levels every reporting period
+  if (millis() - lastReportTime > reportingPeriod)
+  {
+    Serial.println("BPM: " + pox.getHeartRate()); // Print heart rate
+    Serial.println("SpO2: " + pox.getSpO2()); // Print oxidation levels
+    Serial.println("-----"); // Spacing
+
+    lastReportTime = millis(); // Update report time so loop only runs once every reporting period
+  }
 }
