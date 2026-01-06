@@ -3,8 +3,8 @@
 
 PulseOximeter pox; // High level interface to the sensor
 
-const int greenLEDPin = A2; // Pin for the green LED
-const int buttonPin = B1; // Pin for button A
+const byte greenLEDPin = A2; // Pin for the green LED
+const byte buttonPin = B1; // Pin for button A
 
 int BPM = 0; // Heartbeats per min
 int poxState = 0; // Determines if the pox is on (1) or off (0)
@@ -62,7 +62,7 @@ void loop()
 
   //debugging
   Serial.print("reading: ");
-  Serial.println(digitalRead(B1));
+  Serial.println(digitalRead(buttonPin));
   Serial.println("--------");
 }
 
