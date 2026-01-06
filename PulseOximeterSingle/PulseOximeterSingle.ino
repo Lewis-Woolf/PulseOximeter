@@ -21,7 +21,7 @@ void loop()
     BPM = round(1 / timeDifference);
 
     previousTimerCount = millis(); // Set the previous timer count to the current time AFTER the BPM is calculated
-  }
 
-  Serial.println(BPM);
+    Serial.println("BPM: " + BPM);
+  }
 }
