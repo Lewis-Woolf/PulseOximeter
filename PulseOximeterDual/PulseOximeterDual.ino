@@ -22,6 +22,13 @@ void setup()
   }
   else {
     Serialprintln("SUCCESS");
+    Serial.println("  __    __")
+    Serial.println("/    \/    \")
+    Serial.println("\          /")
+    Serial.println(" \        /")
+    Serial.println("  \      /")
+    Serial.println("   \    /")
+    Serial.println("    \__/")
   }
 
   // Register the callback for the beat detection function
@@ -44,7 +51,7 @@ void loop() {
   {
     Serial.println("BPM: " + pox.getHeartRate()); // Print heart rate
     Serial.println("SpO2: " + pox.getSpO2()); // Print oxidation levels
-    Serial.println("-----"); // Spacing
+    Serial.println("--------------"); // Spacing
 
     lastReportTime = millis(); // Update report time so loop only runs once every reporting period
   }
