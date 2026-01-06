@@ -42,8 +42,10 @@ void loop() {
   // Print heart rate and oxidation levels every reporting period
   if (millis() - lastReportTime > reportingPeriod)
   {
-    Serial.println("BPM: " + pox.getHeartRate()); // Print heart rate
-    Serial.println("SpO2: " + pox.getSpO2()); // Print oxidation levels
+    Serial.println("BPM: "); // Print heart rate
+    Serial.println(pox.getHeartRate());
+    Serial.println("SpO2: "); // Print oxidation levels
+    Serial.println(pox.getSpO2());
     Serial.println("--------------"); // Spacing
 
     lastReportTime = millis(); // Update report time so loop only runs once every reporting period
