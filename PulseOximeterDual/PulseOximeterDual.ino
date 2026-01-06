@@ -3,6 +3,11 @@
 
 PulseOximeter pox // High level interface to the sensor
 
+int BPM = 0; // Heartbeats per min
+
+long currentTimerCount = 0; // Current time
+long previousTimerCount = 0; // Time at last beat
+
 
 void setup() 
 {
@@ -18,8 +23,25 @@ void setup()
   else {
     Serialprintln("SUCCESS");
   }
+
+  // Register the callback for the beat detection function
+  pox.setOnBeatDetectedCallBack(onBeatDetected);
 }
 
-void loop() {
 
+// When beat detected, calculate BPM
+void onBeatDetected()
+{
+    currentTimerCount = millis(); // Set current timer count
+    float timeDifference = (currentTimerCount - previousTimerCount) / 60000; // Time difference between previous and current count in minutes
+
+    BPM = round(1 / timeDifference);
+
+    previousTimerCount = millis(); // Set the previous timer count to the current time AFTER the BPM is calculated
+
+    Serial.println("BPM: " + BPM);
+}
+
+
+void loop() {
 }
